@@ -12,27 +12,27 @@ public class ServiceIMPL implements AbstractService {
 
     @Override
     public Agent createAgent(Agent toInsert) {
-        return null;
+        return agent.create(toInsert);
     }
 
     @Override
     public boolean deleteAgent(int id) {
-        return false;
+        return agent.delete(id);
     }
 
     @Override
     public boolean updateAgent(Agent toUpdate) {
-        return false;
+        return agent.update(toUpdate);
     }
 
     @Override
     public Collection<Agent> getAllAgent() {
-        return null;
+        return agent.getAll();
     }
 
     @Override
     public Agent getByIdAgent(int id) {
-        return null;
+        return agent.getById(id);
     }
 
     @Override
