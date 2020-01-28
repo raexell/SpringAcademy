@@ -1,15 +1,13 @@
 package net.bitsrl.MyAcademy.services;
 
-import net.bitsrl.MyAcademy.dao.AgentCRUD;
+import net.bitsrl.MyAcademy.dao.AgentRepository;
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.model.Course;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.util.Collection;
 
 public class ServiceIMPL implements AbstractService {
-    private AgentCRUD agent;
+    private AgentRepository agent;
 
     @Override
     public Agent createAgent(Agent toInsert) {
