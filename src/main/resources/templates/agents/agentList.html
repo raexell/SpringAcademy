@@ -32,6 +32,8 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Sex</th>
+            <th style="text-align: center;">Delete</th>
+            <th style="text-align: center;">Update</th>
         </tr>
         </thead>
 
@@ -41,7 +43,18 @@
             <td th:text="${tempAgent.firstname}" />
             <td th:text="${tempAgent.lastname}" />
             <td th:text="${tempAgent.sex}" />
-
+            <td style="text-align: center;"> <!-- Add a button -->
+                <a th:href="@{/agents/showFormForAdd}"
+                   class="btn btn-danger btn-sm ">
+                    Delete Agent
+                </a>
+            </td>
+            <td style="text-align: center;">
+            <!-- Add a button -->
+                <a th:href="@{/agents/showFormForAdd}"
+                   class="btn btn-warning btn-sm">
+                    Update Agent
+                </a></td>
         </tr>
         </tbody>
     </table>

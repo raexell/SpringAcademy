@@ -19,24 +19,27 @@ public class AgentController {
     private AbstractService service;
 
     @Autowired
-    public AgentController(AbstractService service){
-        this.service=service;
+    public AgentController(AbstractService service) {
+        this.service = service;
     }
+
     @GetMapping("/list")
-    public String listEmployees(Model model){
+    public String listEmployees(Model model) {
         Collection<Agent> agents = service.getAllAgent();
-        agents.forEach(System.out:: println);
-        model.addAttribute("agents",agents);
+        agents.forEach(System.out::println);
+        model.addAttribute("agents", agents);
         return "/agents/agentList";
     }
+
     @GetMapping("/showFormForAdd")
-    public String showFormForAdd(Model model){
+    public String showFormForAdd(Model model) {
         Agent agent = new Agent();
         model.addAttribute("agent", agent);
         return "/agents/agentForm";
     }
+
     @PostMapping("/save")
-    public String createAgent(@ModelAttribute("agent") Agent agent){
+    public String createAgent(@ModelAttribute("agent") Agent agent) {
         service.createAgent(agent);
         return "redirect:/agents/list";
     }
