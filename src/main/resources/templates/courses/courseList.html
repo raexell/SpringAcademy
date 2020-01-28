@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Lista Corsi</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Course List</title>
 </head>
+
 <body>
-    CIAO WEWEWEEEEEEEE!!!
+    <div class="container">
+        <h3>Course Directory</h3>
+        <hr>
+        <a type="button" class="btn btn-primary mb-4 " th:href="@{/courses/showFormForAdd}">Add course</a>
+        <br>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Titolo</th>
+                <th>Costo</th>
+                <th>Numero Ore</th>
+                <th>Descrizione</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="tempCourse : ${courses}">
+
+                <td th:text="${tempCourse.title}" />
+                <td th:text="${tempCourse.cost}" />
+                <td th:text="${tempCourse.numHours}" />
+                <td th:text="${tempCourse.description}"/>
+                <td> <a type="button" class="btn btn-primary" th:href="@{/courses/showFormForAdd}">Delete</a></td>
+                <td> <a type="button" class="btn btn-primary" th:href="@{/courses/showFormForAdd}">Update</a></td>
+
+
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+
+
+    </div>
 </body>
 </html>

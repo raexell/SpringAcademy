@@ -17,4 +17,5 @@ public interface AbstractService {
     boolean updateCourse(Course toUpdate);
     Collection<Course> getAllCourse();
     Course getByIdCourse(int id);
+
 }
