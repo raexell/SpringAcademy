@@ -6,9 +6,10 @@ import net.bitsrl.MyAcademy.model.Course;
 import java.util.Collection;
 
 public interface AbstractCRUD {
+
     Object create(Object toInsert);
     boolean delete(int id);
-    boolean update(int id,Object toUpdate);
+    boolean update(Object toUpdate);
     Collection<Object> getAll();
     Object getById(int id);
 
