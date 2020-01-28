@@ -48,6 +48,12 @@ public class CourseController {
         return "/courses/courses-form";
     }
 
+    @PostMapping("/delete")
+    public String deleteCourse (int courseId){
+        service.deleteCourse(courseId);
+        return "redirect:/courses/list";
+    }
+
     @PostMapping("/save")
     public String saveCourse(@ModelAttribute("course") Course theCourse) {
 

@@ -37,15 +37,15 @@
                 <td th:text="${tempCourse.cost}" />
                 <td th:text="${tempCourse.numHours}" />
                 <td th:text="${tempCourse.description}"/>
-                <td> <a type="button" class="btn btn-primary" th:href="@{/courses/showFormForAdd}">Delete</a></td>
-                <td> <a type="button" class="btn btn-primary" th:href="@{/courses/showFormForAdd}">Update</a></td>
+                <td> <button type="submit" class="btn btn-primary" form="deleteForm" name = "courseId" th:value="${tempCourse.id}">Delete</button></td>
+                <td> <button type="submit" class="btn btn-primary" th:href="@{/courses/showFormForAdd}">Update</button></td>
 
 
             </tr>
             </tbody>
         </table>
         <hr>
-
+        <form id="deleteForm" action="#" th:action="@{/courses/delete}" method="post"></form>
 
     </div>
 </body>
