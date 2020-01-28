@@ -2,11 +2,13 @@ package net.bitsrl.MyAcademy.dao;
 
 import net.bitsrl.MyAcademy.model.Agent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Collection;
 
+@Repository
 public class AgentRepository implements AgentCRUD {
 
     private EntityManager entityManager;
@@ -48,10 +50,8 @@ public class AgentRepository implements AgentCRUD {
 
     @Override
     public Agent getById(int id) {
-        // get employee
         Agent theAgent =
                 entityManager.find(Agent.class, id);
-        // return employee
         return theAgent;
     }
 }

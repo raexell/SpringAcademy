@@ -133,7 +133,7 @@ public class Course {
     }
 
     @ManyToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "area_id", nullable = false)
+    @JoinColumn(name = "area_id", referencedColumnName = "area_id", nullable = true)
     public Area getArea() {
         return area;
     }
@@ -143,7 +143,7 @@ public class Course {
     }
 
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "project_id", nullable = false)
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id", nullable = true)
     public Project getProject() {
         return project;
     }
