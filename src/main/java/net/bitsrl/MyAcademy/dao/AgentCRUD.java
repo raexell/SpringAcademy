@@ -25,7 +25,7 @@ public class AgentCRUD implements AbstractCRUD {
     }
 
     @Override
-    public boolean update(int id, Object toUpdate) {
+    public boolean update( Object toUpdate) {
         return false;
     }
 
