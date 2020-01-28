@@ -38,6 +38,11 @@ public class AgentController {
         return "/agents/agentForm";
     }
 
+    @PostMapping("/delete")
+    public String deleteAgent (int agentId){
+        service.deleteAgent(agentId);
+        return "redirect:/agents/list";
+    }
 
 
     @PostMapping("/save")

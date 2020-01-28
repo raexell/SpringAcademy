@@ -44,10 +44,9 @@
             <td th:text="${tempAgent.lastname}" />
             <td th:text="${tempAgent.sex}" />
             <td style="text-align: center;"> <!-- Add a button -->
-                <a th:href="@{/agents/showFormForAdd}"
-                   class="btn btn-danger btn-sm ">
-                    Delete Agent
-                </a>
+                <button type="submit" form="deleteForm" th:value="${tempAgent.id}"  name="agentId" class="btn btn-danger btn-sm ">
+                    Delete
+                </button>
             </td>
             <td style="text-align: center;">
             <!-- Add a button -->
@@ -58,7 +57,7 @@
         </tr>
         </tbody>
     </table>
-
+    <form id="deleteForm" action="#" th:action="@{/agents/delete}" method="post"></form>
 
 </div>
 
