@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Course</title>
+</head>
+<body>
+
+
+<div class="container">
+
+    <h3>Course Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Update Course</p>
+
+    <form action="#" th:action="@{/courses/update}"
+          th:object="${course}" method="POST">
+
+        <input type="text" th:value="${course.title}" th:field="*{title}"
+               class="form-control mb-4 col-4" placeholder="Title">
+
+        <input type="number" th:value="${courses.cost}" th:field="*{cost}"
+               class="form-control mb-4 col-4" placeholder="Cost">
+
+        <input type="number" th:value="${courses.numHours}" th:field="*{numHours}"
+               class="form-control mb-4 col-4" placeholder="Hours">
+
+        <input type="text" th:value="${courses.description}" th:field="*{description}"
+               class="form-control mb-4 col-4" placeholder="Description">
+
+        <button type="submit" class="btn btn-info col-2">Update</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/courses/list}">Back to Employees List</a>
+
+</div>
+
+
+
+</body>
+</html>

@@ -54,6 +54,18 @@ public class CourseController {
         return "redirect:/courses/list";
     }
 
+    @GetMapping("/showFormById")
+    public String showFormById(Model theModel, int courseId) {
+        Course cc = service.getByIdCourse(courseId);
+
+                theModel.addAttribute("course", cc);
+        // create model attribute to bind form data
+
+        return "/courses/courseUpdate";
+    }
+
+
+
     @PostMapping("/save")
     public String saveCourse(@ModelAttribute("course") Course theCourse) {
 
