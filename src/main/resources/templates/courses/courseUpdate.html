@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,21 +18,23 @@
     <h3>Course Directory</h3>
     <hr>
 
-    <p class="h4 mb-4">Update Course</p>
+    <p class="h4 mb-4">Update Course  </p>
 
     <form action="#" th:action="@{/courses/update}"
           th:object="${course}" method="POST">
 
+        <input type="hidden" th:value="${course.id}" th:field="*{id}"
+               class="form-control mb-4 col-4">
         <input type="text" th:value="${course.title}" th:field="*{title}"
                class="form-control mb-4 col-4" placeholder="Title">
 
-        <input type="number" th:value="${courses.cost}" th:field="*{cost}"
+        <input type="number" th:value="${course.cost}" th:field="*{cost}"
                class="form-control mb-4 col-4" placeholder="Cost">
 
-        <input type="number" th:value="${courses.numHours}" th:field="*{numHours}"
+        <input type="number" th:value="${course.numHours}" th:field="*{numHours}"
                class="form-control mb-4 col-4" placeholder="Hours">
 
-        <input type="text" th:value="${courses.description}" th:field="*{description}"
+        <input type="text" th:value="${course.description}" th:field="*{description}"
                class="form-control mb-4 col-4" placeholder="Description">
 
         <button type="submit" class="btn btn-info col-2">Update</button>

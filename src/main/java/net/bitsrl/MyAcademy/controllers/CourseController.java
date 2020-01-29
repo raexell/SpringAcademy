@@ -76,6 +76,15 @@ public class CourseController {
         return "redirect:/courses/list";
     }
 
+    @PostMapping("/update")
+    public String updateCourse(Course theCourse) {
+
+        // save the course
+        service.updateCourse(theCourse);
+
+        // use a redirect to prevent duplicate submissions
+        return "redirect:/courses/list";
+    }
 
 
 }
