@@ -1,9 +1,14 @@
 package net.bitsrl.MyAcademy.services;
 
 import net.bitsrl.MyAcademy.dao.AgentRepository;
+import net.bitsrl.MyAcademy.dao.CourseEditionRepository;
 import net.bitsrl.MyAcademy.dao.CourseRepository;
+import net.bitsrl.MyAcademy.dao.StudentRepository;
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.model.Course;
+import net.bitsrl.MyAcademy.model.CourseEdition;
+import net.bitsrl.MyAcademy.model.Student;
+import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,10 +18,14 @@ import java.util.Collection;
 public class ServiceIMPL implements AbstractService {
     private AgentRepository agent;
     private CourseRepository course;
+    private CourseEditionRepository courseEdition;
+    private StudentRepository student;
 
-    public ServiceIMPL(AgentRepository agent, CourseRepository course){
+    public ServiceIMPL(AgentRepository agent, CourseRepository course, CourseEditionRepository courseEdition, StudentRepository student){
         this.agent = agent;
         this.course = course;
+        this.courseEdition = courseEdition;
+        this.student = student;
     }
 
     @Override
@@ -78,5 +87,19 @@ public class ServiceIMPL implements AbstractService {
     public Course getByIdCourse(int id) {
         return course.getById(id);
     }
+
+    @Override
+    @Transactional
+    public Collection<CourseEdition> getAllCourseEdition() { return courseEdition.getAll();}
+
+    @Override
+    @Transactional
+    public Collection<Student> getAllStudents() { return student.getAllStundents();}
+
+    @Override
+    public Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId) {
+        return student.getEnrollmentsForCourseEdition(courseEditionId);
+    }
+
 
 }

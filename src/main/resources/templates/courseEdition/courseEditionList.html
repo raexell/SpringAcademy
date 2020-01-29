@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>CourseEdition List</title>
+</head>
+<body>
+<div class="container">
+    <h3>CourseEdition Directory</h3>
+    <hr>
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr style="text-align: center;">
+            <th>Titolo</th>
+            <th>Inizio</th>
+            <th>Fine</th>
+            <th>Operazioni</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempCourseEdition : ${courseEdition}">
+
+            <td th:text="${tempCourseEdition.getCourse().title}" />
+            <td th:text="${tempCourseEdition.start}" />
+            <td th:text="${tempCourseEdition.end}"/>
+            <!--<td> <button type="submit" class="btn btn-primary" form="deleteForm" name = "courseId" th:value="${tempCourseEdition.id}">Delete</button></td>
+           -->
+            <td style="text-align: center;"> <button type="submit" class="btn btn-primary" form="redirectForm" name = "courseEditionId" th:value="${tempCourseEdition.id}">Visualizza</button></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <form id="redirectForm" action="#" th:action="@{/students/studentInEdition}" method="get"></form>
+   <!-- <form id="updateForm" action="#" th:action="@{/courses/showFormById}" method="get"></form>-->
+
+</div>
+</body>
+</html>

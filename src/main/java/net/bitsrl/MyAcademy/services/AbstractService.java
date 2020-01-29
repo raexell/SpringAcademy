@@ -2,6 +2,9 @@ package net.bitsrl.MyAcademy.services;
 
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.model.Course;
+import net.bitsrl.MyAcademy.model.CourseEdition;
+import net.bitsrl.MyAcademy.model.Student;
+import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 
 import java.util.Collection;
 
@@ -17,5 +20,9 @@ public interface AbstractService {
     boolean updateCourse(Course toUpdate);
     Collection<Course> getAllCourse();
     Course getByIdCourse(int id);
+
+    Collection<CourseEdition> getAllCourseEdition();
+    Collection<Student> getAllStudents();
+    Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId);
 
 }
