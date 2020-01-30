@@ -1,5 +1,6 @@
 package net.bitsrl.MyAcademy.controllers;
 
+import net.bitsrl.MyAcademy.dto.StudentDTO;
 import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.model.CourseEdition;
 import net.bitsrl.MyAcademy.model.Student;
@@ -11,11 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
-@Controller
-@RequestMapping("/students")
+@RestController
+@RequestMapping("/api")
 public class StudentController {
     private AbstractService service;
 
@@ -24,15 +26,16 @@ public class StudentController {
         this.service = service;
     }
 
-    @GetMapping("/studentInEdition")
-    public String studentInEdition(Model theModel,  int courseEditionId){
-        Collection<EnrollmentForCourseEdition> theStudent = service.getAllStundentsForCourseEdition(courseEditionId);
-        theModel.addAttribute("students", theStudent);
-        theStudent.forEach(System.out::println);
-        return "/students/studentInEdition";
+    @GetMapping("/students")
+    public Collection<StudentDTO> getAll(){
+        return service.getAllStudentsDTO();
     }
-
-
+       /* public String studentInEdition(Model theModel,  int courseEditionId){
+            Collection<EnrollmentForCourseEdition> theStudent = service.getAllStundentsForCourseEdition(courseEditionId);
+            theModel.addAttribute("students", theStudent);
+            theStudent.forEach(System.out::println);
+            return "/students/studentInEdition";
+        }*/
 
 
 }

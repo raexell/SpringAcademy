@@ -1,20 +1,15 @@
 package net.bitsrl.MyAcademy.controllers;
 
+import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.services.AbstractService;
-import net.bitsrl.MyAcademy.services.ServiceIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@Controller
-@RequestMapping("/courses")
+@RestController
+@RequestMapping("/api")
 public class CourseController {
     private AbstractService service;
 
@@ -22,68 +17,41 @@ public class CourseController {
     public CourseController(AbstractService service){
         this.service = service;
     }
-
-    /*@GetMapping("/courses")
-    public String getCourse(){
-        Collection<Course> courses = service.getAllCourse();
-        courses.forEach(System.out:: println);
-        return "courses/courseList";
-    }
-*/
-    @GetMapping("/list")
-    public String listCourses (Model theModel){
-        Collection<Course> theCourse = service.getAllCourse();
-        theModel.addAttribute("courses", theCourse);
-        return "/courses/courseList";
+    @GetMapping("/courses")
+    public Collection<CourseDTO> getAll() {
+        return service.getAllCourseDTO();
     }
 
-    @GetMapping("/showFormForAdd")
-    public String showFormForAdd(Model theModel) {
-
-        // create model attribute to bind form data
-        Course theCourse = new Course();
-
-        theModel.addAttribute("course", theCourse);
-
-        return "/courses/courses-form";
+    @GetMapping("/courses/{courseId}")
+    public Course getCourse(@PathVariable int courseId) {
+        Course theCourse = service.getByIdCourse(courseId);
+        if(theCourse == null){
+            throw new RuntimeException("Course id not found - " + courseId);
+        }
+        return theCourse;
     }
 
-    @PostMapping("/delete")
-    public String deleteCourse (int courseId){
+    @DeleteMapping("/courses/{courseId}")
+    public String deleteCourse (@PathVariable int courseId){
+        Course theCourse = service.getByIdCourse(courseId);
+        if(theCourse == null){
+            throw new RuntimeException("Course id not found - " + courseId);
+        }
         service.deleteCourse(courseId);
-        return "redirect:/courses/list";
+        return "Deleted course id - " + courseId;
     }
 
-    @GetMapping("/showFormById")
-    public String showFormById(Model theModel, int courseId) {
-        Course cc = service.getByIdCourse(courseId);
-
-                theModel.addAttribute("course", cc);
-        // create model attribute to bind form data
-
-        return "/courses/courseUpdate";
-    }
-
-
-
-    @PostMapping("/save")
-    public String saveCourse(@ModelAttribute("course") Course theCourse) {
-
-        // save the course
+    @PostMapping("/courses")
+    public Course createCourse(@RequestBody Course theCourse) {
+        theCourse.setId(0);
         service.createCourse(theCourse);
-
-        // use a redirect to prevent duplicate submissions
-        return "redirect:/courses/list";
+        return theCourse;
     }
 
-    @PostMapping("/update")
-    public String updateCourse(Course theCourse) {
-
-        // save the course
+    @PutMapping("/courses")
+    public Course updateCourse(@RequestBody Course theCourse) {
         service.updateCourse(theCourse);
-
-        // use a redirect to prevent duplicate submissions
-        return "redirect:/courses/list";
+        return theCourse;
     }
 
 

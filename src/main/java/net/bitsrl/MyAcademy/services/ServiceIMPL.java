@@ -4,6 +4,8 @@ import net.bitsrl.MyAcademy.dao.AgentRepository;
 import net.bitsrl.MyAcademy.dao.CourseEditionRepository;
 import net.bitsrl.MyAcademy.dao.CourseRepository;
 import net.bitsrl.MyAcademy.dao.StudentRepository;
+import net.bitsrl.MyAcademy.dto.CourseDTO;
+import net.bitsrl.MyAcademy.dto.StudentDTO;
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.model.CourseEdition;
@@ -84,6 +86,12 @@ public class ServiceIMPL implements AbstractService {
 
     @Override
     @Transactional
+    public Collection<CourseDTO> getAllCourseDTO() {
+        return course.getAllDTO();
+    }
+
+    @Override
+    @Transactional
     public Course getByIdCourse(int id) {
         return course.getById(id);
     }
@@ -95,6 +103,10 @@ public class ServiceIMPL implements AbstractService {
     @Override
     @Transactional
     public Collection<Student> getAllStudents() { return student.getAllStundents();}
+
+    @Override
+    @Transactional
+    public Collection<StudentDTO> getAllStudentsDTO() { return student.getAllStundentsDTO();}
 
     @Override
     public Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId) {

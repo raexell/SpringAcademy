@@ -1,20 +1,14 @@
 package net.bitsrl.MyAcademy.controllers;
 
 import net.bitsrl.MyAcademy.model.Agent;
-import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.services.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@Controller
-@RequestMapping("/agents")
+@RestController
+@RequestMapping("/api")
 public class AgentController {
     private AbstractService service;
 
@@ -23,31 +17,41 @@ public class AgentController {
         this.service = service;
     }
 
-    @GetMapping("/list")
-    public String listEmployees(Model model) {
-        Collection<Agent> agents = service.getAllAgent();
-        agents.forEach(System.out::println);
-        model.addAttribute("agents", agents);
-        return "/agents/agentList";
+    @GetMapping("/agents")
+    public Collection<Agent> getAll() {
+        return service.getAllAgent();
     }
 
-    @GetMapping("/showFormForAdd")
-    public String showFormForAdd(Model model) {
-        Agent agent = new Agent();
-        model.addAttribute("agent", agent);
-        return "/agents/agentForm";
+    @GetMapping("/agents/{agentId}")
+    public Agent getAgent(@PathVariable int agentId) {
+        Agent theAgent = service.getByIdAgent(agentId);
+        if(theAgent == null){
+            throw new RuntimeException("Agent id not found - " + agentId);
+        }
+        return theAgent;
     }
 
-    @PostMapping("/delete")
-    public String deleteAgent (int agentId){
+    @DeleteMapping("/agents/{agentId}")
+    public String deleteAgent (@PathVariable int agentId){
+        Agent theAgent = service.getByIdAgent(agentId);
+        if(theAgent == null){
+            throw new RuntimeException("Agent id not found - " + agentId);
+        }
         service.deleteAgent(agentId);
-        return "redirect:/agents/list";
+        return "Deleted agent id - " + agentId;
     }
 
-
-    @PostMapping("/save")
-    public String createAgent(@ModelAttribute("agent") Agent agent) {
-        service.createAgent(agent);
-        return "redirect:/agents/list";
+    @PostMapping("/agents")
+    public Agent createAgent(@RequestBody Agent theAgent) {
+        theAgent.setId(0);
+        service.createAgent(theAgent);
+        return theAgent;
     }
+
+    @PutMapping("/agents")
+    public Agent updateAgent(@RequestBody Agent theAgent) {
+        service.updateAgent(theAgent);
+        return theAgent;
+    }
+
 }

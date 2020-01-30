@@ -1,10 +1,13 @@
 package net.bitsrl.MyAcademy.dao;
 
+import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 @Repository
@@ -36,6 +39,16 @@ public class CourseRepository implements CourseCRUD {
     @Override
     public Collection<Course> getAll() {
         return em.createQuery("select c from Course c", Course.class).getResultList();
+    }
+
+    @Override
+    public Collection<CourseDTO> getAllDTO() {
+        Collection<CourseDTO> dto = new ArrayList<>();
+        List<Course>  corsi = em.createQuery("select c from Course c", Course.class).getResultList();
+        for (Course tmp: corsi  ) {
+            dto.add(new CourseDTO(tmp));
+        }
+        return dto;
     }
 
     @Override

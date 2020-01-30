@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/courseEdition")
+@RequestMapping("/api")
 public class CourseEditionController{
     private AbstractService service;
 

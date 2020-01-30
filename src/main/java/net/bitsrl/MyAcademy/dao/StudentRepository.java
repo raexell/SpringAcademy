@@ -1,5 +1,6 @@
 package net.bitsrl.MyAcademy.dao;
 
+import net.bitsrl.MyAcademy.dto.StudentDTO;
 import net.bitsrl.MyAcademy.model.CourseEdition;
 import net.bitsrl.MyAcademy.model.Student;
 import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
@@ -23,6 +25,17 @@ public class StudentRepository implements StudentCRUD {
                 .setParameter("ceId",ceId)
                 .getResultList();*/
     }
+    @Override
+    public Collection<StudentDTO> getAllStundentsDTO() {
+        Collection<Student> students= em.createQuery("select s from Student s", Student.class).getResultList();
+        Collection<StudentDTO> studentDTO = new ArrayList<>();
+        for (Student temp:students){
+            studentDTO.add(new StudentDTO(temp));
+        }
+        return studentDTO;
+    }
+
+
     @Override
     public Collection<EnrollmentForCourseEdition> getEnrollmentsForCourseEdition(int courseEditionId) {
         TypedQuery<EnrollmentForCourseEdition> query =  em.createQuery("select new net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition(e.id,e.student.id,e.student.firstname,e.student.lastname,e.courseFeePaid) from Enrollment e where e.courseEdition.id = :courseEditionId", EnrollmentForCourseEdition.class);
