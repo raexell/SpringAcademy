@@ -5,7 +5,6 @@ import net.bitsrl.MyAcademy.model.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
 
 public class CourseEditionDTO {
     private int id;
@@ -19,7 +18,7 @@ public class CourseEditionDTO {
     private BigDecimal ricavatoTot;
     private BigDecimal ricavatoAttuale;
     private int numStudentsHavePaid;
-    private int getNumStudentsHavePaid;
+    private int numStudentsHaventPaid;
 
 
     public CourseEditionDTO(CourseEdition ce) {
@@ -34,7 +33,7 @@ public class CourseEditionDTO {
        this.ricavatoTot = ce.getCost().multiply(new BigDecimal(ce.getEnrollments().size()));
         this.ricavatoAttuale =ce.getCost().multiply(new BigDecimal(countPayment(ce.getEnrollments(),true)));
         this.numStudentsHavePaid = countPayment(ce.getEnrollments(),true);
-        this.getNumStudentsHavePaid = countPayment(ce.getEnrollments(),false);
+        this.numStudentsHaventPaid = countPayment(ce.getEnrollments(),false);
     }
 
     public int countPayment(Collection<Enrollment> subs, boolean check){
@@ -128,12 +127,12 @@ public class CourseEditionDTO {
         this.numStudentsHavePaid = numStudentsHavePaid;
     }
 
-    public int getGetNumStudentsHavePaid() {
-        return getNumStudentsHavePaid;
+    public int getNumStudentsHaventPaid() {
+        return numStudentsHaventPaid;
     }
 
-    public void setGetNumStudentsHavePaid(int getNumStudentsHavePaid) {
-        this.getNumStudentsHavePaid = getNumStudentsHavePaid;
+    public void setNumStudentsHaventPaid(int numStudentsHaventPaid) {
+        this.numStudentsHaventPaid = numStudentsHaventPaid;
     }
 
     @Override
@@ -150,7 +149,7 @@ public class CourseEditionDTO {
                 ", ricavatoTot=" + ricavatoTot +
                 ", ricavatoAttuale=" + ricavatoAttuale +
                 ", numStudentsHavePaid=" + numStudentsHavePaid +
-                ", getNumStudentsHavePaid=" + getNumStudentsHavePaid +
+                ", getNumStudentsHavePaid=" + numStudentsHaventPaid +
                 '}';
     }
 }

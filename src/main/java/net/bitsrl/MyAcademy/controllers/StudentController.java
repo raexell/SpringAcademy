@@ -1,5 +1,6 @@
 package net.bitsrl.MyAcademy.controllers;
 
+import net.bitsrl.MyAcademy.dto.StudentDTO;
 import net.bitsrl.MyAcademy.model.Enrollment;
 import net.bitsrl.MyAcademy.model.Student;
 import net.bitsrl.MyAcademy.services.AbstractService;
@@ -19,8 +20,8 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public Collection<Student> getAll(){
-        return service.getAllStudents();
+    public Collection<StudentDTO> getAllDTO(){
+        return service.getAllStudentsDTO();
     }
        /* public String studentInEdition(Model theModel,  int courseEditionId){
             Collection<EnrollmentForCourseEdition> theStudent = service.getAllStundentsForCourseEdition(courseEditionId);
