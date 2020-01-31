@@ -1,5 +1,7 @@
 package net.bitsrl.MyAcademy.dto;
 
+import net.bitsrl.MyAcademy.model.Agent;
+import net.bitsrl.MyAcademy.model.Client;
 import net.bitsrl.MyAcademy.model.Student;
 
 import java.time.LocalDate;
@@ -21,6 +23,10 @@ public class StudentDTO {
         this.sex = student.getSex();
         this.email = student.getEmail();
         this.idClient = student.getClient().getId();
+    }
+
+    public StudentDTO(){
+
     }
 
     public int getId() {
@@ -90,5 +96,19 @@ public class StudentDTO {
                 ", email='" + email + '\'' +
                 ", idClient=" + idClient +
                 '}';
+    }
+
+    public Student toStudent (){
+        Student student = new Student();
+        student.setId(this.id);
+        student.setFirstname(this.firstname);
+        student.setLastname(this.lastname);
+        student.setDateOfBirth(this.dateOfBirth);
+        student.setSex(this.sex);
+        student.setEmail(this.email);
+        Client client = new Client();
+        client.setId(this.idClient);
+        student.setClient(client);
+        return student;
     }
 }

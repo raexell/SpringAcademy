@@ -21,6 +21,7 @@ public class ServiceIMPL implements AbstractService {
     private CourseEditionRepository courseEdition;
     private StudentRepository student;
 
+
     public ServiceIMPL(AgentRepository agent, CourseRepository course, CourseEditionRepository courseEdition, StudentRepository student){
         this.agent = agent;
         this.course = course;
@@ -118,6 +119,22 @@ public class ServiceIMPL implements AbstractService {
     public Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId) {
         return student.getEnrollmentsForCourseEdition(courseEditionId);
     }
+
+    @Override
+    public boolean deleteStudent(int id) {
+        return student.delete(id);
+    }
+
+    @Override
+    public boolean updateStudent(Student toUpdate) {
+        return student.update(toUpdate);
+    }
+
+    @Override
+    public Student getByIdStudent(int id) {
+        return student.getById(id);
+    }
+
     @Override
     @Transactional
     public Collection<CourseEdition> getAllCEByCourseId(int courseId){

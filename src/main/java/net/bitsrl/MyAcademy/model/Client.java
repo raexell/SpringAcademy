@@ -31,7 +31,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 25)
+    @Column(name = "name", nullable = true, length = 25)
     public String getName() {
         return name;
     }
@@ -41,7 +41,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "p_iva", nullable = false, length = 45)
+    @Column(name = "p_iva", nullable = true, length = 45)
     public String getpIva() {
         return pIva;
     }
@@ -51,7 +51,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "fiscal_code", nullable = false, length = 45)
+    @Column(name = "fiscal_code", nullable = true, length = 45)
     public String getFiscalCode() {
         return fiscalCode;
     }
@@ -61,7 +61,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "addess", nullable = false, length = 45)
+    @Column(name = "addess", nullable = true, length = 45)
     public String getAddess() {
         return addess;
     }
@@ -71,7 +71,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "city", nullable = false, length = 45)
+    @Column(name = "city", nullable = true, length = 45)
     public String getCity() {
         return city;
     }
@@ -81,7 +81,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "zip", nullable = false, length = 18)
+    @Column(name = "zip", nullable = true, length = 18)
     public String getZip() {
         return zip;
     }
@@ -101,7 +101,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 32)
+    @Column(name = "email", nullable = true, length = 32)
     public String getEmail() {
         return email;
     }

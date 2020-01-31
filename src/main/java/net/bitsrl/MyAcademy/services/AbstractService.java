@@ -30,4 +30,7 @@ public interface AbstractService {
     Student createStudent(Student toInsert);
     Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId);
 
+    boolean deleteStudent(int id);
+    boolean updateStudent(Student toUpdate);
+    Student getByIdStudent(int id);
 }

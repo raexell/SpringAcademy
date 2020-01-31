@@ -1,15 +1,13 @@
 package net.bitsrl.MyAcademy.dao;
 
 import net.bitsrl.MyAcademy.dto.StudentDTO;
-import net.bitsrl.MyAcademy.model.Course;
-import net.bitsrl.MyAcademy.model.CourseEdition;
-import net.bitsrl.MyAcademy.model.Enrollment;
-import net.bitsrl.MyAcademy.model.Student;
+import net.bitsrl.MyAcademy.model.*;
 import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +41,31 @@ public class StudentRepository implements StudentCRUD {
         return toInsert;
     }
 
+    @Override
+    public boolean delete(int id)  {
+        // delete object with primary key
+        Query theQuery = em.createQuery(
+                "delete from Student where id=:id");
 
+        theQuery.setParameter("id", id);
+
+        theQuery.executeUpdate();
+        return true;
+    }
+
+    @Override
+    public boolean update(Student toUpdate) {
+        // save or update the employee
+        em.merge(toUpdate);
+        return true;
+    }
+
+    @Override
+    public Student getById(int id)  {
+        Student student =
+                em.find(Student.class, id);
+        return student;
+    }
 
 
     @Override

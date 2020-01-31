@@ -2,6 +2,7 @@ package net.bitsrl.MyAcademy.controllers;
 
 import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
+import net.bitsrl.MyAcademy.dto.StudentDTO;
 import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.model.CourseEdition;
 import net.bitsrl.MyAcademy.services.AbstractService;
@@ -62,7 +63,14 @@ public class CourseController {
         return listCe;
     }
 
+   /* @GetMapping("/courses/courseEdition/{courseId}/students/{courseeditionid}")
+    public Collection<StudentDTO> getCourseEditionStudents(@PathVariable int courseId, int courseEd) {
+        Collection<CourseEditionDTO> listCe = service.getCourseEditionDTObyCourseId(courseId);
 
+        Collection<> listCe = service.;
+        return listCe;
+    }
+*/
 
 
 }

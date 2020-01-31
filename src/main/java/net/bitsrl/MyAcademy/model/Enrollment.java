@@ -30,7 +30,7 @@ public class Enrollment {
     }
 
     @Basic
-    @Column(name = "enrollment_date", nullable = false)
+    @Column(name = "enrollment_date", nullable = true)
     public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
@@ -40,7 +40,7 @@ public class Enrollment {
     }
 
     @Basic
-    @Column(name = "withdrawed", nullable = false)
+    @Column(name = "withdrawed", nullable = true)
     public boolean isWithdrawed() {
         return withdrawed;
     }

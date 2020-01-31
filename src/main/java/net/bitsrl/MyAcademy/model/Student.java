@@ -22,6 +22,9 @@ public class Student {
     private Client client;
     private Collection<StudentFeedback> studentFeedbacks;
 
+    public Student(){
+
+    }
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "student_id", nullable = false)
@@ -74,7 +77,7 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "degree_type", nullable = false)
+    @Column(name = "degree_type", nullable = true)
     @Enumerated(EnumType.ORDINAL)
     public DegreeType getDegreeType() {
         return degreeType;
@@ -85,7 +88,7 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "degree_title", nullable = false, length = 45)
+    @Column(name = "degree_title", nullable = true, length = 45)
     public String getDegreeTitle() {
         return degreeTitle;
     }
@@ -95,7 +98,7 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "is_private", nullable = false)
+    @Column(name = "is_private", nullable = true)
     public boolean isPrivate() {
         return isPrivate;
     }

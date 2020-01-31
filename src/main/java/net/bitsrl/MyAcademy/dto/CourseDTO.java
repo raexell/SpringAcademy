@@ -1,6 +1,7 @@
 package net.bitsrl.MyAcademy.dto;
 
 import net.bitsrl.MyAcademy.model.Course;
+import net.bitsrl.MyAcademy.model.Student;
 
 import java.math.BigDecimal;
 
@@ -91,4 +92,5 @@ public class CourseDTO {
                 ", idProject=" + idProject +
                 '}';
     }
+
 }

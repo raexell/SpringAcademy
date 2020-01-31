@@ -4,7 +4,9 @@ import net.bitsrl.MyAcademy.model.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class CourseEditionDTO {
     private int id;
@@ -19,7 +21,15 @@ public class CourseEditionDTO {
     private BigDecimal ricavatoAttuale;
     private int numStudentsHavePaid;
     private int numStudentsHaventPaid;
+    private Collection<StudentDTO> iscritti;
 
+    public Collection<StudentDTO> getIscritti() {
+        return iscritti;
+    }
+
+    public void setIscritti(Collection<StudentDTO> iscritti) {
+        this.iscritti = iscritti;
+    }
 
     public CourseEditionDTO(CourseEdition ce) {
         this.id = ce.getId();
@@ -34,6 +44,7 @@ public class CourseEditionDTO {
         this.ricavatoAttuale =ce.getCost().multiply(new BigDecimal(countPayment(ce.getEnrollments(),true)));
         this.numStudentsHavePaid = countPayment(ce.getEnrollments(),true);
         this.numStudentsHaventPaid = countPayment(ce.getEnrollments(),false);
+        this.iscritti = this.listaIscritti(ce.getEnrollments());
     }
 
     public int countPayment(Collection<Enrollment> subs, boolean check){
@@ -44,6 +55,14 @@ public class CourseEditionDTO {
             }
         }
         return cont;
+    }
+
+    public Collection<StudentDTO> listaIscritti (Collection<Enrollment> iscrizioni){
+        iscritti = new ArrayList<>();
+        for (Enrollment tmp: iscrizioni) {
+            iscritti.add(new StudentDTO(tmp.getStudent()));
+        }
+        return iscritti;
     }
 
     public int getId() {
