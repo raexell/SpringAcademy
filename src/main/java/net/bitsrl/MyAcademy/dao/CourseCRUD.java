@@ -13,4 +13,5 @@ public interface CourseCRUD {
     Collection<Course> getAll();
     Collection<CourseDTO> getAllDTO();
     Course getById(int id);
+
 }

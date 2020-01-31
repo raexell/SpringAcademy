@@ -1,7 +1,9 @@
 package net.bitsrl.MyAcademy.dao;
 
 import net.bitsrl.MyAcademy.dto.StudentDTO;
+import net.bitsrl.MyAcademy.model.Course;
 import net.bitsrl.MyAcademy.model.CourseEdition;
+import net.bitsrl.MyAcademy.model.Enrollment;
 import net.bitsrl.MyAcademy.model.Student;
 import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +37,19 @@ public class StudentRepository implements StudentCRUD {
         return studentDTO;
     }
 
+    @Override
+    public Student create(Student toInsert) {
+        em.persist(toInsert);
+        return toInsert;
+    }
+
+
+
 
     @Override
     public Collection<EnrollmentForCourseEdition> getEnrollmentsForCourseEdition(int courseEditionId) {
         TypedQuery<EnrollmentForCourseEdition> query =  em.createQuery("select new net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition(e.id,e.student.id,e.student.firstname,e.student.lastname,e.courseFeePaid) from Enrollment e where e.courseEdition.id = :courseEditionId", EnrollmentForCourseEdition.class);
         query.setParameter("courseEditionId", courseEditionId);
         return query.getResultList();
-
-        /*return em.createQuery("select s.firstname, s.lastname, e.courseFeePaid from Enrollment e join e.courseEdition s.id where e.courseEdition = :ceId", Student.class)
-                .setParameter("ceId",ceId)
-                .getResultList();*/
     }
 }

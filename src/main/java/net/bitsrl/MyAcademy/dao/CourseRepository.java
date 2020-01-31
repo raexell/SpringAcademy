@@ -2,6 +2,7 @@ package net.bitsrl.MyAcademy.dao;
 
 import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.model.Course;
+import net.bitsrl.MyAcademy.model.CourseEdition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
@@ -56,5 +57,13 @@ public class CourseRepository implements CourseCRUD {
         Course theCourse =
                 em.find(Course.class, id);
         return theCourse;
+    }
+
+    public Collection<CourseEdition> getAllCourseEditionById(int courseId){
+        Collection<CourseEdition> ce = new ArrayList<>();
+        ce = em.createQuery("select c from CourseEdition c where c.course.id= :courseId", CourseEdition.class)
+                .setParameter("courseId", courseId)
+                .getResultList();
+        return ce;
     }
 }

@@ -1,11 +1,9 @@
 package net.bitsrl.MyAcademy.services;
 
 import net.bitsrl.MyAcademy.dto.CourseDTO;
+import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.dto.StudentDTO;
-import net.bitsrl.MyAcademy.model.Agent;
-import net.bitsrl.MyAcademy.model.Course;
-import net.bitsrl.MyAcademy.model.CourseEdition;
-import net.bitsrl.MyAcademy.model.Student;
+import net.bitsrl.MyAcademy.model.*;
 import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 
 import java.util.Collection;
@@ -25,8 +23,11 @@ public interface AbstractService {
     Course getByIdCourse(int id);
 
     Collection<CourseEdition> getAllCourseEdition();
+    Collection<CourseEdition> getAllCEByCourseId(int courseId);
+    Collection<CourseEditionDTO> getCourseEditionDTObyCourseId(int courseId);
     Collection<Student> getAllStudents();
     Collection<StudentDTO> getAllStudentsDTO();
+    Student createStudent(Student toInsert);
     Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId);
 
 }

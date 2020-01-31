@@ -1,18 +1,10 @@
 package net.bitsrl.MyAcademy.controllers;
 
-import net.bitsrl.MyAcademy.dto.StudentDTO;
-import net.bitsrl.MyAcademy.model.Course;
-import net.bitsrl.MyAcademy.model.CourseEdition;
+import net.bitsrl.MyAcademy.model.Enrollment;
 import net.bitsrl.MyAcademy.model.Student;
 import net.bitsrl.MyAcademy.services.AbstractService;
-import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -27,8 +19,8 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public Collection<StudentDTO> getAll(){
-        return service.getAllStudentsDTO();
+    public Collection<Student> getAll(){
+        return service.getAllStudents();
     }
        /* public String studentInEdition(Model theModel,  int courseEditionId){
             Collection<EnrollmentForCourseEdition> theStudent = service.getAllStundentsForCourseEdition(courseEditionId);
@@ -36,6 +28,12 @@ public class StudentController {
             theStudent.forEach(System.out::println);
             return "/students/studentInEdition";
         }*/
+    @PostMapping("/students")
+    public Student createStudent(@RequestBody Student student) {
+        student.setId(0);
+        return service.createStudent(student);
+    }
+
 
 
 }

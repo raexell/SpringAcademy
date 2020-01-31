@@ -5,11 +5,9 @@ import net.bitsrl.MyAcademy.dao.CourseEditionRepository;
 import net.bitsrl.MyAcademy.dao.CourseRepository;
 import net.bitsrl.MyAcademy.dao.StudentRepository;
 import net.bitsrl.MyAcademy.dto.CourseDTO;
+import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.dto.StudentDTO;
-import net.bitsrl.MyAcademy.model.Agent;
-import net.bitsrl.MyAcademy.model.Course;
-import net.bitsrl.MyAcademy.model.CourseEdition;
-import net.bitsrl.MyAcademy.model.Student;
+import net.bitsrl.MyAcademy.model.*;
 import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import org.springframework.stereotype.Service;
 
@@ -109,9 +107,28 @@ public class ServiceIMPL implements AbstractService {
     public Collection<StudentDTO> getAllStudentsDTO() { return student.getAllStundentsDTO();}
 
     @Override
+    @Transactional
+    public Student createStudent(Student toInsert) {
+        return student.create(toInsert);
+    }
+
+
+
+    @Override
     public Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId) {
         return student.getEnrollmentsForCourseEdition(courseEditionId);
     }
+    @Override
+    @Transactional
+    public Collection<CourseEdition> getAllCEByCourseId(int courseId){
+        return course.getAllCourseEditionById(courseId);
+    }
+    @Override
+    @Transactional
+    public Collection<CourseEditionDTO> getCourseEditionDTObyCourseId(int courseId){
+        return courseEdition.getCourseEditionDTObyCourseId(courseId);
+    }
+
 
 
 }

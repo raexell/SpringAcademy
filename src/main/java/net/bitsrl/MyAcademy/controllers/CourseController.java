@@ -1,7 +1,9 @@
 package net.bitsrl.MyAcademy.controllers;
 
 import net.bitsrl.MyAcademy.dto.CourseDTO;
+import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.model.Course;
+import net.bitsrl.MyAcademy.model.CourseEdition;
 import net.bitsrl.MyAcademy.services.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,14 @@ public class CourseController {
         service.updateCourse(theCourse);
         return theCourse;
     }
+
+    @GetMapping("/courses/courseEdition/{courseId}")
+    public Collection<CourseEditionDTO> getCourseEditionByCourseId(@PathVariable int courseId) {
+        Collection<CourseEditionDTO> listCe = service.getCourseEditionDTObyCourseId(courseId);
+        return listCe;
+    }
+
+
 
 
 }
