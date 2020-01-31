@@ -30,4 +30,11 @@ public class CourseEditionRepository implements CourseEditionCRUD{
         return ceDTO;
     }
 
+    @Override
+    public CourseEdition getById(int id) {
+        CourseEdition courseEdition =
+                em.find(CourseEdition.class, id);
+        return courseEdition;
+    }
+
 }

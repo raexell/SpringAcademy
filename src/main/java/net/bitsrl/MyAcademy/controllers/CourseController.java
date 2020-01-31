@@ -57,7 +57,7 @@ public class CourseController {
         return theCourse;
     }
 
-    @GetMapping("/courses/courseEdition/{courseId}")
+    @GetMapping("/courses/courseEditions/{courseId}")
     public Collection<CourseEditionDTO> getCourseEditionByCourseId(@PathVariable int courseId) {
         Collection<CourseEditionDTO> listCe = service.getCourseEditionDTObyCourseId(courseId);
         return listCe;

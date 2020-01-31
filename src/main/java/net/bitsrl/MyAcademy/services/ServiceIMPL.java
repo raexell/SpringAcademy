@@ -1,9 +1,6 @@
 package net.bitsrl.MyAcademy.services;
 
-import net.bitsrl.MyAcademy.dao.AgentRepository;
-import net.bitsrl.MyAcademy.dao.CourseEditionRepository;
-import net.bitsrl.MyAcademy.dao.CourseRepository;
-import net.bitsrl.MyAcademy.dao.StudentRepository;
+import net.bitsrl.MyAcademy.dao.*;
 import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.dto.StudentDTO;
@@ -20,6 +17,7 @@ public class ServiceIMPL implements AbstractService {
     private CourseRepository course;
     private CourseEditionRepository courseEdition;
     private StudentRepository student;
+    private EnrollmentRepository iscrizioni;
 
 
     public ServiceIMPL(AgentRepository agent, CourseRepository course, CourseEditionRepository courseEdition, StudentRepository student){
@@ -116,21 +114,25 @@ public class ServiceIMPL implements AbstractService {
 
 
     @Override
+    @Transactional
     public Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId) {
         return student.getEnrollmentsForCourseEdition(courseEditionId);
     }
 
     @Override
+    @Transactional
     public boolean deleteStudent(int id) {
         return student.delete(id);
     }
 
     @Override
+    @Transactional
     public boolean updateStudent(Student toUpdate) {
         return student.update(toUpdate);
     }
 
     @Override
+    @Transactional
     public Student getByIdStudent(int id) {
         return student.getById(id);
     }
@@ -146,6 +148,22 @@ public class ServiceIMPL implements AbstractService {
         return courseEdition.getCourseEditionDTObyCourseId(courseId);
     }
 
+    @Override
+    @Transactional
+    public CourseEditionDTO getCourseEditionById(int courseEDId){
+        return new CourseEditionDTO(courseEdition.getById(courseEDId));
+    }
+    @Override
+    @Transactional
+    public CourseEdition getCEById(int courseEDId){
+        return courseEdition.getById(courseEDId);
+    }
+
+@Override
+    @Transactional
+    public Enrollment createEnrollmentByStudentId(CourseEdition courseEDId, Student studentId){
+        return iscrizioni.createByStudentId(courseEDId,  studentId);
+    }
 
 
 }

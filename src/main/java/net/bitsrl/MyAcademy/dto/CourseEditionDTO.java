@@ -47,6 +47,23 @@ public class CourseEditionDTO {
         this.iscritti = this.listaIscritti(ce.getEnrollments());
     }
 
+
+
+    public CourseEdition toCourseEdition (){
+        CourseEdition ce = new CourseEdition();
+        Course corso= new Course();
+        Agent manager = new Agent();
+        ce.setId(this.id);
+        ce.setCost(this.getCost());
+        corso.setId(this.getCoursid());
+        ce.setCourse(corso);
+        manager.setId(this.getLeadTeacher());
+        ce.setLeadTeacher(manager);
+        ce.setStart(this.getStart());
+        ce.setEnd(this.getEnd());
+        return ce;
+    }
+
     public int countPayment(Collection<Enrollment> subs, boolean check){
         int cont = 0;
         for (Enrollment e: subs) {
@@ -113,6 +130,13 @@ public class CourseEditionDTO {
         this.cost = cost;
     }
 
+    public int getLeadTeacher() {
+        return leadTeacher;
+    }
+
+    public void setLeadTeacher(int leadTeacher) {
+        this.leadTeacher = leadTeacher;
+    }
 
     public int getNumStudents() {
         return numStudents;

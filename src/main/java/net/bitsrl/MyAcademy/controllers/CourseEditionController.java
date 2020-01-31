@@ -1,11 +1,11 @@
 package net.bitsrl.MyAcademy.controllers;
 
+import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.model.CourseEdition;
+import net.bitsrl.MyAcademy.model.Enrollment;
 import net.bitsrl.MyAcademy.services.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -18,10 +18,22 @@ public class CourseEditionController{
     public CourseEditionController(AbstractService service){
         this.service = service;
     }
-    @GetMapping("/CourseEdition")
+    @GetMapping("/CourseEditions")
     public Collection<CourseEdition> listCourseEdition (){
         return  service.getAllCourseEdition();
     }
 
 
+    @GetMapping("CourseEditions/{courseEDId}")
+    public CourseEditionDTO getCourseEditionById(@PathVariable int courseEDId) {
+        return service.getCourseEditionById(courseEDId);
+    }
+
+    @PostMapping("CourseEditions/{courseEDId}/Enrollment/{studentId}")
+    public Enrollment getCourseEditionById(@PathVariable int courseEDId, @PathVariable int studentId) {
+
+
+        return service.createEnrollmentByStudentId(service.getCEById(courseEDId),service.getByIdStudent(studentId));
+
+    }
 }

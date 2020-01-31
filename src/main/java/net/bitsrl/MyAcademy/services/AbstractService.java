@@ -21,7 +21,7 @@ public interface AbstractService {
     Collection<Course> getAllCourse();
     Collection<CourseDTO> getAllCourseDTO();
     Course getByIdCourse(int id);
-
+    CourseEditionDTO getCourseEditionById(int courseEDId);
     Collection<CourseEdition> getAllCourseEdition();
     Collection<CourseEdition> getAllCEByCourseId(int courseId);
     Collection<CourseEditionDTO> getCourseEditionDTObyCourseId(int courseId);
@@ -33,4 +33,7 @@ public interface AbstractService {
     boolean deleteStudent(int id);
     boolean updateStudent(Student toUpdate);
     Student getByIdStudent(int id);
+    CourseEdition getCEById(int courseEDId);
+    Enrollment createEnrollmentByStudentId(CourseEdition courseEDId, Student studentId);
+
 }

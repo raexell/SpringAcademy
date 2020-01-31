@@ -18,6 +18,11 @@ public class Enrollment {
     private Student student;
     private CourseEdition courseEdition;
 
+    public Enrollment(Student student, CourseEdition courseEdition) {
+        this.student= student;
+        this.courseEdition= courseEdition;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "enrollment_id", nullable = false)
