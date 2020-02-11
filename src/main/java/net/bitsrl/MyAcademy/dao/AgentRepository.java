@@ -1,12 +1,17 @@
 package net.bitsrl.MyAcademy.dao;
 
+import net.bitsrl.MyAcademy.dto.AgentDTO;
+import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.model.Agent;
+import net.bitsrl.MyAcademy.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 public class AgentRepository implements AgentCRUD {
@@ -45,7 +50,7 @@ public class AgentRepository implements AgentCRUD {
 
     @Override
     public Collection<Agent> getAll() {
-        return  entityManager.createQuery("from Agent").getResultList();
+        return  entityManager.createQuery("select a from Agent a", Agent.class).getResultList();
     }
 
     @Override
@@ -53,5 +58,22 @@ public class AgentRepository implements AgentCRUD {
         Agent theAgent =
                 entityManager.find(Agent.class, id);
         return theAgent;
+    }
+
+    @Override
+    public Collection<AgentDTO> getAllDTO() {
+        Collection<AgentDTO> dto = new ArrayList<>();
+        List<Agent> agenti = entityManager.createQuery("select a from Agent a", Agent.class).getResultList();
+        for (Agent tmp: agenti  ) {
+            dto.add(new AgentDTO(tmp));
+        }
+        return dto;
+    }
+
+    @Override
+    public AgentDTO getByIdDTO(int id) {
+        Agent theAgent = entityManager.find(Agent.class, id);
+        AgentDTO dto = new AgentDTO(theAgent);
+        return dto;
     }
 }

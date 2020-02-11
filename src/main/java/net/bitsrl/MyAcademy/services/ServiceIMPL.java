@@ -1,6 +1,7 @@
 package net.bitsrl.MyAcademy.services;
 
 import net.bitsrl.MyAcademy.dao.*;
+import net.bitsrl.MyAcademy.dto.AgentDTO;
 import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.dto.StudentDTO;
@@ -55,6 +56,18 @@ public class ServiceIMPL implements AbstractService {
     @Transactional
     public Agent getByIdAgent(int id) {
         return agent.getById(id);
+    }
+
+    @Transactional
+    @Override
+    public Collection<AgentDTO> getAllAgentDTO() {
+        return agent.getAllDTO();
+    }
+
+    @Transactional
+    @Override
+    public AgentDTO getByIdAgentDTO(int id) {
+        return agent.getByIdDTO(id);
     }
 
     @Override

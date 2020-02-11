@@ -1,12 +1,13 @@
 package net.bitsrl.MyAcademy.controllers;
 
+import net.bitsrl.MyAcademy.dto.AgentDTO;
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.services.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class AgentController {
@@ -18,13 +19,13 @@ public class AgentController {
     }
 
     @GetMapping("/agents")
-    public Collection<Agent> getAll() {
-        return service.getAllAgent();
+    public Collection<AgentDTO> getAllDTO() {
+        return service.getAllAgentDTO();
     }
 
     @GetMapping("/agents/{agentId}")
-    public Agent getAgent(@PathVariable int agentId) {
-        Agent theAgent = service.getByIdAgent(agentId);
+    public AgentDTO getAgentbyIdDTO(@PathVariable int agentId) {
+        AgentDTO theAgent = service.getByIdAgentDTO(agentId);
         if(theAgent == null){
             throw new RuntimeException("Agent id not found - " + agentId);
         }

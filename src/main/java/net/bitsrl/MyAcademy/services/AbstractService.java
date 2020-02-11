@@ -1,5 +1,6 @@
 package net.bitsrl.MyAcademy.services;
 
+import net.bitsrl.MyAcademy.dto.AgentDTO;
 import net.bitsrl.MyAcademy.dto.CourseDTO;
 import net.bitsrl.MyAcademy.dto.CourseEditionDTO;
 import net.bitsrl.MyAcademy.dto.StudentDTO;
@@ -14,6 +15,9 @@ public interface AbstractService {
     boolean updateAgent(Agent toUpdate);
     Collection<Agent> getAllAgent();
     Agent getByIdAgent(int id);
+
+    Collection<AgentDTO> getAllAgentDTO();
+    AgentDTO getByIdAgentDTO(int id);
 
     Course createCourse(Course toInsert);
     boolean deleteCourse(int id);
