@@ -23,6 +23,7 @@ public class Enrollment {
         this.courseEdition= courseEdition;
     }
 
+    public Enrollment(){}
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "enrollment_id", nullable = false)
