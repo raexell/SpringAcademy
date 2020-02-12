@@ -5,6 +5,7 @@ import net.bitsrl.MyAcademy.model.Client;
 import net.bitsrl.MyAcademy.model.Student;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class StudentDTO {
     private int id;
@@ -13,8 +14,9 @@ public class StudentDTO {
     private LocalDate dateOfBirth;
     private String sex;
     private String email;
-    private int idClient;
+    private int age;
 
+    private int idClient;
     public StudentDTO(Student student) {
         this.id = student.getId();
         this.firstname = student.getFirstname();
@@ -23,10 +25,24 @@ public class StudentDTO {
         this.sex = student.getSex();
         this.email = student.getEmail();
         this.idClient = student.getClient().getId();
+        this.age=calculateAge(student.getDateOfBirth());
     }
 
     public StudentDTO(){
 
+    }
+
+    public int calculateAge(LocalDate bd) {
+        LocalDate today = LocalDate.now();
+        return Period.between(bd, today).getYears();
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getId() {
