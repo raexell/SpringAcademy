@@ -27,6 +27,12 @@ public class ServiceIMPL implements AbstractService {
         this.courseEdition = courseEdition;
         this.student = student;
     }
+    @Transactional
+    @Override
+    public Collection<AgentDTO> getAllAgents() {
+        return agent.getAllAgents();
+
+    }
 
     @Override
     @Transactional
@@ -46,11 +52,6 @@ public class ServiceIMPL implements AbstractService {
         return agent.update(toUpdate);
     }
 
-    @Override
-    @Transactional
-    public Collection<Agent> getAllAgent() {
-        return agent.getAll();
-    }
 
     @Override
     @Transactional
@@ -58,17 +59,6 @@ public class ServiceIMPL implements AbstractService {
         return agent.getById(id);
     }
 
-    @Transactional
-    @Override
-    public Collection<AgentDTO> getAllAgentDTO() {
-        return agent.getAllDTO();
-    }
-
-    @Transactional
-    @Override
-    public AgentDTO getByIdAgentDTO(int id) {
-        return agent.getByIdDTO(id);
-    }
 
     @Override
     @Transactional

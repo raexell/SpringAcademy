@@ -41,13 +41,13 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{studentId}")
-    public String deleteStudent (@PathVariable int studentId){
+    public void deleteStudent (@PathVariable int studentId){
         Student student = service.getByIdStudent(studentId);
         if(student == null){
             throw new RuntimeException("Student id not found - " + studentId);
         }
         service.deleteStudent(studentId);
-        return "Deleted student id - " + studentId;
+        return ;
     }
 
     @GetMapping("/students/{studentId}")

@@ -10,14 +10,11 @@ import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import java.util.Collection;
 
 public interface AbstractService {
+    Collection<AgentDTO> getAllAgents();
     Agent createAgent(Agent toInsert);
     boolean deleteAgent(int id);
     boolean updateAgent(Agent toUpdate);
-    Collection<Agent> getAllAgent();
     Agent getByIdAgent(int id);
-
-    Collection<AgentDTO> getAllAgentDTO();
-    AgentDTO getByIdAgentDTO(int id);
 
     Course createCourse(Course toInsert);
     boolean deleteCourse(int id);

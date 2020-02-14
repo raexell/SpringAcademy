@@ -20,16 +20,16 @@ public class AgentController {
 
     @GetMapping("/agents")
     public Collection<AgentDTO> getAllDTO() {
-        return service.getAllAgentDTO();
+        return service.getAllAgents();
     }
 
     @GetMapping("/agents/{agentId}")
     public AgentDTO getAgentbyIdDTO(@PathVariable int agentId) {
-        AgentDTO theAgent = service.getByIdAgentDTO(agentId);
+        Agent theAgent = service.getByIdAgent(agentId);
         if(theAgent == null){
             throw new RuntimeException("Agent id not found - " + agentId);
         }
-        return theAgent;
+        return new AgentDTO(theAgent);
     }
 
     @DeleteMapping("/agents/{agentId}")
@@ -43,16 +43,18 @@ public class AgentController {
     }
 
     @PostMapping("/agents")
-    public Agent createAgent(@RequestBody Agent theAgent) {
+    public AgentDTO createAgent(@RequestBody AgentDTO theAgent) {
         theAgent.setId(0);
-        service.createAgent(theAgent);
-        return theAgent;
+        Agent created = service.createAgent(theAgent.toAgent());
+        return new AgentDTO(created);
     }
 
     @PutMapping("/agents")
-    public Agent updateAgent(@RequestBody Agent theAgent) {
-        service.updateAgent(theAgent);
-        return theAgent;
+    public AgentDTO updateAgent(@RequestBody AgentDTO theAgent) {
+        Agent toUpdate = theAgent.toAgent();
+        service.updateAgent(toUpdate);
+        return new AgentDTO(toUpdate);
+
     }
 
 }
