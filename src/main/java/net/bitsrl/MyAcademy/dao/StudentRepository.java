@@ -18,21 +18,16 @@ public class StudentRepository implements StudentCRUD {
     EntityManager em;
 
     @Override
-    public Collection<Student> getAllStundents() {
-        return em.createQuery("select s from Student s", Student.class)
-                .getResultList();
-        /*return em.createQuery("select s.firstname, s.lastname, e.courseFeePaid from Enrollment e join e.courseEdition s.id where e.courseEdition = :ceId", Student.class)
-                .setParameter("ceId",ceId)
-                .getResultList();*/
-    }
-    @Override
-    public Collection<StudentDTO> getAllStundentsDTO() {
+    public Collection<StudentDTO> getAllStundents() {
         Collection<Student> students= em.createQuery("select s from Student s", Student.class).getResultList();
-        Collection<StudentDTO> studentDTO = new ArrayList<>();
+        Collection<StudentDTO> studentDTOs = new ArrayList<>();
         for (Student temp:students){
-            studentDTO.add(new StudentDTO(temp));
+            studentDTOs.add(new StudentDTO(temp));
         }
-        return studentDTO;
+        for (StudentDTO dto : studentDTOs){
+            System.out.println(dto);
+        }
+        return studentDTOs;
     }
 
     @Override

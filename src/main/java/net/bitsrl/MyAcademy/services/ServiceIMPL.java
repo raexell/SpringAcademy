@@ -112,11 +112,7 @@ public class ServiceIMPL implements AbstractService {
 
     @Override
     @Transactional
-    public Collection<Student> getAllStudents() { return student.getAllStundents();}
-
-    @Override
-    @Transactional
-    public Collection<StudentDTO> getAllStudentsDTO() { return student.getAllStundentsDTO();}
+    public Collection<StudentDTO> getAllStudents() { return student.getAllStundents();}
 
     @Override
     @Transactional

@@ -22,20 +22,22 @@ public class StudentController {
 
     @GetMapping("/students")
        public Collection<StudentDTO> getAllDTO(){
-           return service.getAllStudentsDTO();
+           return service.getAllStudents();
        }
 
     @PostMapping("/students")
-    public Student createStudent(@RequestBody StudentDTO student) {
+    public StudentDTO createStudent(@RequestBody StudentDTO student) {
         student.setId(0);
-        return service.createStudent(student.toStudent());
+        Student created = service.createStudent(student.toStudent());
+        return new StudentDTO(created);
 
     }
 
-    @PutMapping("/students")
-    public StudentDTO updateStudent(@RequestBody StudentDTO student) {
-        service.updateStudent(student.toStudent());
-        return student;
+    @PutMapping("/students/{studentId}")
+    public StudentDTO updateStudent(@PathVariable int studentId, @RequestBody StudentDTO studentDTO) {
+        Student toUpdate = studentDTO.toStudent();
+        service.updateStudent(toUpdate);
+        return new StudentDTO(toUpdate);
     }
 
     @DeleteMapping("/students/{studentId}")

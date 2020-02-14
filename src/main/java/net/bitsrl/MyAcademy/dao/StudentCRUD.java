@@ -10,9 +10,8 @@ import net.bitsrl.MyAcademy.viewModel.EnrollmentForCourseEdition;
 import java.util.Collection;
 
 public interface StudentCRUD {
-    Collection<Student> getAllStundents();
+    Collection<StudentDTO> getAllStundents();
     Collection<EnrollmentForCourseEdition> getEnrollmentsForCourseEdition(int courseEditionId);
-    Collection<StudentDTO> getAllStundentsDTO();
     Student create(Student toInsert);
     boolean delete(int id);
     boolean update(Student toUpdate);

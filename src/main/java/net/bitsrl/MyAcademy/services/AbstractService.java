@@ -29,8 +29,7 @@ public interface AbstractService {
     Collection<CourseEdition> getAllCourseEdition();
     Collection<CourseEdition> getAllCEByCourseId(int courseId);
     Collection<CourseEditionDTO> getCourseEditionDTObyCourseId(int courseId);
-    Collection<Student> getAllStudents();
-    Collection<StudentDTO> getAllStudentsDTO();
+    Collection<StudentDTO> getAllStudents();
     Student createStudent(Student toInsert);
     Collection<EnrollmentForCourseEdition> getAllStundentsForCourseEdition(int courseEditionId);
 
@@ -39,5 +38,5 @@ public interface AbstractService {
     Student getByIdStudent(int id);
     CourseEdition getCEById(int courseEDId);
     Enrollment createEnrollmentByStudentId(CourseEdition courseEDId, Student studentId);
-
+    
 }

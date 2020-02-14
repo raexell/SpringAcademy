@@ -2,6 +2,7 @@ package net.bitsrl.MyAcademy.dto;
 
 import net.bitsrl.MyAcademy.model.Agent;
 import net.bitsrl.MyAcademy.model.Client;
+import net.bitsrl.MyAcademy.model.DegreeType;
 import net.bitsrl.MyAcademy.model.Student;
 
 import java.time.LocalDate;
@@ -15,6 +16,10 @@ public class StudentDTO {
     private String sex;
     private String email;
     private int age;
+    private String phone;
+    private DegreeType degreeType;
+    private String degreeTitle;
+    private boolean independent;
 
     private int idClient;
     public StudentDTO(Student student) {
@@ -26,6 +31,10 @@ public class StudentDTO {
         this.email = student.getEmail();
         this.idClient = student.getClient().getId();
         this.age=calculateAge(student.getDateOfBirth());
+        this.phone = student.getPhone();
+        this.degreeType=student.getDegreeType();
+        this.degreeTitle = student.getDegreeTitle();
+        this.independent = student.isPrivate();
     }
 
     public StudentDTO(){
@@ -101,6 +110,38 @@ public class StudentDTO {
         this.idClient = idClient;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public DegreeType getDegreeType() {
+        return degreeType;
+    }
+
+    public void setDegreeType(DegreeType degreeType) {
+        this.degreeType = degreeType;
+    }
+
+    public String getDegreeTitle() {
+        return degreeTitle;
+    }
+
+    public void setDegreeTitle(String degreeTitle) {
+        this.degreeTitle = degreeTitle;
+    }
+
+    public boolean isIndependent() {
+        return independent;
+    }
+
+    public void setIndependent(boolean independent) {
+        this.independent = independent;
+    }
+
     @Override
     public String toString() {
         return "StudentDTO{" +
@@ -125,6 +166,10 @@ public class StudentDTO {
         Client client = new Client();
         client.setId(this.idClient);
         student.setClient(client);
+        student.setPhone(this.phone);
+        student.setDegreeType(this.degreeType);
+        student.setDegreeTitle(this.degreeTitle);
+        student.setPrivate(this.independent);
         return student;
     }
 }
